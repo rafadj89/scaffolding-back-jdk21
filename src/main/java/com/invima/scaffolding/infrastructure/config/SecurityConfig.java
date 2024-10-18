@@ -29,7 +29,7 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        String issuerUri = "http://localhost:8080/realms/invima";  // URL del issuer en tu Keycloak
+        String issuerUri = "https://keycloak-infra-transversal.apps.ocp4.invima.gov.co/auth/realms/Invima";  // URL del issuer en tu Keycloak
         NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders.fromIssuerLocation(issuerUri);
 
         // Validadores adicionales (si es necesario)
