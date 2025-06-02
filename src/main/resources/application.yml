@@ -1,26 +1,38 @@
 server:
   port: 9090
+
 spring:
   application:
     name: scaffolding
   datasource:
-    url: jdbc:sqlserver://inv-prod-eu2-sqlmi-newplataforma-qa.12bd9ac29611.database.windows.net;databaseName=MAESTRA
-    username: Bit512
-    password: InVimA20#24Mt
+    url: jdbc:oracle:thin:@//localhost:1521/XE
+    username: system
+    password: Oracle123
+    driver-class-name: oracle.jdbc.OracleDriver
     hikari:
-      maximum-pool-size: 20
-      class-loader: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 600000         # 10 minutos
+      max-lifetime: 1800000        # 30 minutos
+      connection-timeout: 30000    # 30 segundos
+      pool-name: oracle-hikari-pool
+      validation-timeout: 5000
+      connection-test-query: SELECT 1 FROM DUAL
   jpa:
     hibernate:
       ddl-auto: none
     properties:
       hibernate:
-        default_schema: dbo
+        dialect: org.hibernate.dialect.OracleDialect
         format_sql: true
         show_sql: true
-        dialect: org.hibernate.dialect.SQLServerDialect
+    open-in-view: false
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://keycloak-infra-transversal.apps.ocp4.invima.gov.co/auth/realms/Invima
+          issuer-uri: http://localhost:8080/auth/realms/master-realm
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

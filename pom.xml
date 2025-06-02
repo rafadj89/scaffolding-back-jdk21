@@ -5,10 +5,10 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.4</version>
+		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.invima</groupId>
+	<groupId>com.bit</groupId>
 	<artifactId>scaffolding</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>scaffolding</name>
@@ -28,7 +28,9 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<spring.version>3.3.4</spring.version>
+		<spring.version>3.5.0</spring.version>
+		<oracle.jdbc.version>21.9.0.0</oracle.jdbc.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -46,8 +48,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.34</version>
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 
 		<!-- Spring Boot Data JPA for Database interaction -->
@@ -56,11 +57,11 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- H2 Database (You can switch to another DB like PostgreSQL, MySQL) -->
+		<!-- H2 Database (You can switch to another DB Oracle 19) -->
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<version>12.2.0.jre11</version> <!-- Usa la versión compatible con Java 21 -->
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc11</artifactId>
+			<version>21.9.0.0</version>
 		</dependency>
 
 		<!-- Spring Boot Starter Test -->
@@ -92,13 +93,12 @@
 		</dependency>
 	</dependencies>
 
-
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version> <!-- O la última versión disponible -->
+				<version>3.14.0</version> <!-- O la última versión disponible -->
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -117,7 +117,7 @@
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.40.0</version>
+				<version>0.46.0</version>
 				<configuration>
 					<images>
 						<image>

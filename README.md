@@ -5,6 +5,15 @@ Este proyecto proporciona un scaffolding básico para un microservicio.
 Incluye una estructura de carpetas predefinida, configuración inicial y
 dependencias esenciales para empezar rápidamente.
 
+# Dependencias principales
+- Java 21 
+- Spring boot 3.5 latest*
+- Spring cloud 2025.0.0 --> connect to config server | api gateway | eureka
+- Driver JDBC Oracle --> Oracle19c
+- Keycloak --> connect to identity users cross
+- Redis cache --> connect to redis cache
+- Docker File --> preparación para hacer deploy into kube
+
 ## Estructura del proyecto
 
 Este proyecto sigue los principios de la **arquitectura Hexagonal**
